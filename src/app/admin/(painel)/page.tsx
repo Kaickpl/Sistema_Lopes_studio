@@ -49,7 +49,7 @@ export default function ListaProdutos() {
     <>
       <Titulo
         acao={
-          <Link href="/admin/produtos/novo" className={estilos.botaoLaranja}>
+          <Link href="/admin/produtos/novo" className={estilos.botaoVermelho}>
             + Novo produto
           </Link>
         }
@@ -81,7 +81,7 @@ export default function ListaProdutos() {
             {produtos.length === 0 ? "Nenhum produto cadastrado ainda" : "Nada encontrado"}
           </p>
           {produtos.length === 0 && (
-            <Link href="/admin/produtos/novo" className={`${estilos.botaoLaranja} mt-4`}>
+            <Link href="/admin/produtos/novo" className={`${estilos.botaoVermelho} mt-4`}>
               Cadastrar o primeiro produto
             </Link>
           )}

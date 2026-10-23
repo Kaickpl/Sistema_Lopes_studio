@@ -88,7 +88,7 @@ export default function Categorias() {
           placeholder="Nova categoria (ex.: Chaveiros)"
           className={estilos.input}
         />
-        <button disabled={ocupado || !nova.trim()} className={`${estilos.botaoLaranja} shrink-0`}>
+        <button disabled={ocupado || !nova.trim()} className={`${estilos.botaoVermelho} shrink-0`}>
           Adicionar
         </button>
       </form>

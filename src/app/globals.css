@@ -1,17 +1,15 @@
 @import "tailwindcss";
 
-/* Paleta: papel quente + tinta escura + laranja "filamento" */
+/* Paleta da logo Lopes Studio: creme (fundo) + preto ("LS" e bico) + vermelho (ponta do bico e barra) */
 :root {
-  --papel: #f5f1ea;
-  --papel-2: #ece6dc;
-  --cartao: #fffdf9;
-  --tinta: #1d1b19;
-  --tinta-suave: #6a635b;
-  --linha: #e2dbcf;
-  --filamento: #e8590c;
-  --filamento-escuro: #c2470a;
-  --zap: #1fa855;
-  --zap-escuro: #178a45;
+  --papel: #f3f0e8; /* creme — fundo */
+  --papel-2: #e9e5da;
+  --cartao: #faf8f3;
+  --tinta: #17171b; /* preto */
+  --tinta-suave: #5f5d58;
+  --linha: #dcd6c9;
+  --filamento: #e4432d; /* vermelho */
+  --filamento-escuro: #c0341f; /* vermelho para textos pequenos e hover (melhor contraste) */
 }
 
 @theme inline {
@@ -23,10 +21,10 @@
   --color-linha: var(--linha);
   --color-filamento: var(--filamento);
   --color-filamento-escuro: var(--filamento-escuro);
-  --color-zap: var(--zap);
-  --color-zap-escuro: var(--zap-escuro);
-  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  /* Títulos: Archivo na largura expandida, como o "LOPES STUDIO" da logo */
+  --font-display: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display--font-variation-settings: "wdth" 125;
 }
 
 html {
@@ -40,7 +38,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Textura de "camadas de impressão" usada no topo do site */
+/* Textura de "camadas de impressão" (as listras do "LS") usada no topo do site */
 .camadas {
   background-image: repeating-linear-gradient(
     to bottom,
@@ -51,7 +49,7 @@ body {
   );
 }
 
-.camadas-laranja {
+.camadas-vermelho {
   background-image: repeating-linear-gradient(
     to bottom,
     var(--filamento) 0,
@@ -59,6 +57,43 @@ body {
     var(--filamento-escuro) 5px,
     var(--filamento-escuro) 6px
   );
+}
+
+/* Logo animada: o bico percorre a barra vermelha enquanto ela é "impressa" */
+@keyframes imprimir-barra {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes mover-bico {
+  from {
+    transform: translateX(-246px);
+  }
+}
+.barra-impressa {
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: imprimir-barra 1.6s cubic-bezier(0.6, 0, 0.3, 1) 0.3s both;
+}
+.bico-impressor {
+  animation: mover-bico 1.6s cubic-bezier(0.6, 0, 0.3, 1) 0.3s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .barra-impressa,
+  .bico-impressor {
+    animation: none;
+  }
+}
+
+/* Barrinha do carrossel de novidades: enche enquanto o destaque está na tela */
+@keyframes progresso-vitrine {
+  from {
+    transform: scaleX(0);
+  }
+}
+.progresso-vitrine {
+  transform-origin: left;
+  animation: progresso-vitrine linear forwards;
 }
 
 /* Esconde a barra de rolagem horizontal das listas de chips */

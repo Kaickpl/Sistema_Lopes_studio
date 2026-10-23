@@ -100,6 +100,11 @@ Clique no botão **Connect** no topo do painel do Supabase (ou vá em **Project 
 
    NEXT_PUBLIC_LOJA_NOME=Nome da Sua Loja
    NEXT_PUBLIC_INSTAGRAM=seu_instagram
+
+   # Endereço oficial do site (preencha depois de publicar, no Passo 7).
+   # Com ele, a mensagem do WhatsApp leva o link do produto e aparece a foto na conversa.
+   # Vazio = a mensagem vai só com o nome e o preço, sem link.
+   NEXT_PUBLIC_SITE_URL=
    ```
 
 ## Passo 5 — Rodar no seu computador
@@ -122,7 +127,7 @@ Para parar o servidor, aperte `Ctrl + C` no terminal. Sempre que mudar o `.env.l
 3. **Coleções:** crie "Especial de Natal", por exemplo, com uma foto de capa opcional. Quando a data passar, clique em **Ocultar**.
 4. **Produtos > + Novo produto:** envie as fotos (a primeira é a capa), preencha nome, preço, descrição e categoria, e marque as coleções.
    - **Disponível** desligado: aparece como **Esgotado** e o botão vira **"Pedir sob encomenda"**.
-   - **Destaque**: o produto aparece primeiro, com selo.
+   - **Destaque**: o produto entra no carrossel de novidades do topo da página inicial e aparece primeiro no catálogo, com selo. Sem nenhum destaque marcado, o carrossel mostra os produtos mais novos (só os que têm foto).
    - Na lista de produtos, clicar em **Disponível/Esgotado** troca na hora.
 
 As fotos do celular são reduzidas automaticamente antes do envio, então pode mandar direto da galeria.
@@ -151,7 +156,7 @@ As fotos do celular são reduzidas automaticamente antes do envio, então pode m
 
 1. Crie uma conta em **https://netlify.com** entrando com o GitHub.
 2. **Add new project > Import an existing project > GitHub** e escolha o repositório `catalogo-3d`.
-3. A Netlify detecta o Next.js sozinha. Antes de publicar, abra **Environment variables** e adicione as **mesmas 5 variáveis** do seu `.env.local`.
+3. A Netlify detecta o Next.js sozinha. Antes de publicar, abra **Environment variables** e adicione as **mesmas variáveis** do seu `.env.local`. Em `NEXT_PUBLIC_SITE_URL`, coloque o endereço do site na Netlify (ex.: `https://catalogo-3d.netlify.app`) ou o seu domínio.
 4. Clique em **Deploy**. Em poucos minutos você recebe um link como `https://catalogo-3d.netlify.app`.
 5. Coloque esse link na **bio do Instagram**.
 
@@ -165,7 +170,8 @@ Depois disso, toda vez que você fizer `git push`, o site se atualiza sozinho. *
 
 | O que mudar | Onde |
 |---|---|
-| Cores | `src/app/globals.css` (variáveis no topo: `--filamento` é o laranja) |
+| Cores | `src/app/globals.css` (variáveis no topo: `--papel` é o creme, `--tinta` o preto e `--filamento` o vermelho da logo) |
+| Logo | `src/components/Logo.tsx` (marca "LS" em SVG) e `src/app/icon.svg` (ícone da aba do navegador) |
 | Textos da página inicial | `src/app/(loja)/page.tsx` |
 | Mensagem que vai para o WhatsApp | `src/lib/utils.ts` (função `mensagemProduto`) |
 | Rodapé | `src/components/Rodape.tsx` |

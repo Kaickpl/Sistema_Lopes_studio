@@ -1,23 +1,21 @@
 import Link from "next/link";
 import { LOJA } from "@/lib/config";
 import { linkWhatsApp } from "@/lib/utils";
-import { IconeCubo, IconeInstagram, IconeWhatsApp } from "./Icones";
+import { IconeInstagram, IconeWhatsApp } from "./Icones";
+import { Logo } from "./Logo";
 
 export function Cabecalho() {
   return (
-    <header className="sticky top-0 z-30 border-b border-linha bg-papel/85 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-        <Link href="/" className="flex items-center gap-2.5">
-          <span className="grid size-9 place-items-center rounded-lg bg-tinta text-papel">
-            <IconeCubo className="size-5" />
-          </span>
-          <span className="font-display text-lg font-bold tracking-tight">{LOJA.nome}</span>
+    <header className="sticky top-0 z-30 border-b border-tinta/10 bg-papel/90 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4">
+        <Link href="/" aria-label={`${LOJA.nome} — início`}>
+          <Logo />
         </Link>
 
         <nav className="flex items-center gap-1 sm:gap-2">
           <Link
             href="/#catalogo"
-            className="hidden rounded-full px-3 py-2 text-sm font-medium text-tinta-suave hover:text-tinta sm:block"
+            className="hidden px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-tinta-suave hover:text-tinta sm:block"
           >
             Catálogo
           </Link>
@@ -26,7 +24,7 @@ export function Cabecalho() {
               href={`https://instagram.com/${LOJA.instagram}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="grid size-10 place-items-center rounded-full text-tinta-suave hover:bg-papel-2 hover:text-tinta"
+              className="grid size-9 place-items-center rounded-md text-tinta-suave hover:bg-papel-2 hover:text-tinta sm:size-10"
               aria-label="Instagram"
             >
               <IconeInstagram />
@@ -36,11 +34,11 @@ export function Cabecalho() {
             href={linkWhatsApp("Olá! Vim pelo catálogo e queria tirar uma dúvida.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-full bg-zap px-4 py-2 text-sm font-semibold text-white hover:bg-zap-escuro"
+            className="flex items-center gap-2 rounded-md bg-tinta px-3 py-2.5 text-xs font-bold uppercase tracking-wider text-papel transition hover:bg-filamento-escuro hover:text-white sm:px-4"
           >
             <IconeWhatsApp className="size-4" />
             <span className="hidden sm:inline">Fale comigo</span>
-            <span className="sm:hidden">Contato</span>
+            <span className="max-[359px]:sr-only sm:hidden">Contato</span>
           </a>
         </nav>
       </div>

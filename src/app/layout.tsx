@@ -1,6 +1,5 @@
-import type { Metadata } from "next";
-import "@fontsource-variable/dm-sans";
-import "@fontsource-variable/bricolage-grotesque";
+import type { Metadata, Viewport } from "next";
+import "@fontsource-variable/archivo/wdth.css";
 import "./globals.css";
 import { LOJA } from "@/lib/config";
 
@@ -10,6 +9,10 @@ export const metadata: Metadata = {
     template: `%s · ${LOJA.nome}`,
   },
   description: `Catálogo de peças impressas em 3D prontas para venda — ${LOJA.nome}.`,
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f3f0e8", // creme da logo na barra do navegador do celular
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

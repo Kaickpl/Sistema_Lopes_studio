@@ -19,7 +19,7 @@ export function SeletorOrdem({ atual }: Props) {
         const qs = sp.toString();
         router.push(qs ? `/?${qs}` : "/", { scroll: false });
       }}
-      className="rounded-full border border-linha bg-cartao px-4 py-3 text-sm font-medium text-tinta outline-none focus:border-tinta/50"
+      className="rounded-md border border-linha bg-cartao px-4 py-3 text-sm font-medium text-tinta outline-none focus:border-tinta"
     >
       <option value="recentes">Mais recentes</option>
       <option value="menor-preco">Menor preço</option>

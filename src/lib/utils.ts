@@ -36,10 +36,7 @@ export function linkWhatsApp(mensagem: string) {
     : `https://wa.me/?text=${texto}`;
 }
 
-export function mensagemProduto(
-  produto: { nome: string; preco: number; disponivel: boolean },
-  url?: string,
-) {
+export function mensagemProduto(produto: { nome: string; slug: string; preco: number; disponivel: boolean }) {
   const linhas = produto.disponivel
     ? [
         `Olá! Tenho interesse no produto *${produto.nome}* (${formatarPreco(produto.preco)}).`,
@@ -49,6 +46,8 @@ export function mensagemProduto(
         `Olá! Vi o produto *${produto.nome}* no catálogo e ele está esgotado.`,
         "Vocês conseguem fazer um sob encomenda?",
       ];
-  if (url) linhas.push("", url);
+  // Só usa o endereço oficial configurado (nunca o do navegador, que pode ser localhost ou um IP).
+  // Com ele, o WhatsApp mostra a foto e o nome do produto na prévia do link.
+  if (LOJA.site) linhas.push("", `${LOJA.site}/produto/${produto.slug}`);
   return linhas.join("\n");
 }

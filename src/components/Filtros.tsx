@@ -19,10 +19,10 @@ function montarUrl(params: Record<string, string | undefined>) {
 
 export function Filtros({ categorias, atual }: Props) {
   const chip = (ativo: boolean) =>
-    `shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition ${
+    `shrink-0 rounded-md border px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
       ativo
         ? "border-tinta bg-tinta text-papel"
-        : "border-linha bg-cartao text-tinta-suave hover:border-tinta/40 hover:text-tinta"
+        : "border-linha bg-cartao text-tinta-suave hover:border-tinta hover:text-tinta"
     }`;
 
   return (
@@ -37,7 +37,7 @@ export function Filtros({ categorias, atual }: Props) {
             name="q"
             defaultValue={atual.busca}
             placeholder="Buscar produto..."
-            className="w-full rounded-full border border-linha bg-cartao py-3 pl-11 pr-4 text-sm outline-none placeholder:text-tinta-suave/70 focus:border-tinta/50"
+            className="w-full rounded-md border border-linha bg-cartao py-3 pl-11 pr-4 text-sm outline-none placeholder:text-tinta-suave/70 focus:border-tinta"
           />
         </Form>
         <SeletorOrdem atual={atual} />

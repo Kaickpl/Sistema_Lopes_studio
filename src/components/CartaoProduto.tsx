@@ -10,7 +10,7 @@ export function CartaoProduto({ produto, prioridade = false }: { produto: Produt
   return (
     <Link
       href={`/produto/${produto.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-linha bg-cartao transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-12px_rgba(29,27,25,0.25)]"
+      className="group flex flex-col overflow-hidden rounded-lg border border-linha bg-cartao transition hover:-translate-y-0.5 hover:border-tinta/40 hover:shadow-[0_14px_30px_-14px_rgba(23,23,27,0.35)]"
     >
       <div className="relative aspect-square overflow-hidden bg-papel-2">
         {capa ? (
@@ -30,28 +30,34 @@ export function CartaoProduto({ produto, prioridade = false }: { produto: Produt
 
         <div className="absolute left-2.5 top-2.5 flex flex-col items-start gap-1.5">
           {!produto.disponivel && (
-            <span className="rounded-full bg-tinta px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-papel">
+            <span className="rounded-sm bg-tinta px-2 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-papel">
               Esgotado
             </span>
           )}
           {produto.disponivel && produto.destaque && (
-            <span className="rounded-full bg-filamento px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
+            <span className="rounded-sm bg-filamento-escuro px-2 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white">
               Destaque
             </span>
           )}
         </div>
+
+        {/* Barra vermelha "impressa" ao passar o mouse, como a da logo */}
+        <span
+          className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-filamento transition-transform duration-500 group-hover:scale-x-100"
+          aria-hidden
+        />
       </div>
 
       <div className="flex flex-1 flex-col gap-1 p-3 sm:p-4">
         {produto.categoria?.nome && (
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-tinta-suave">
+          <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-tinta-suave">
             {produto.categoria.nome}
           </span>
         )}
-        <h3 className="line-clamp-2 font-display text-[15px] font-semibold leading-snug sm:text-base">
+        <h3 className="line-clamp-2 text-[15px] font-semibold leading-snug sm:text-base">
           {produto.nome}
         </h3>
-        <p className="mt-auto pt-2 font-display text-lg font-bold text-filamento">
+        <p className="mt-auto pt-2 font-display text-lg font-black">
           {formatarPreco(produto.preco)}
         </p>
       </div>
@@ -73,7 +79,7 @@ export function GradeCarregando({ quantidade = 8 }: { quantidade?: number }) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
       {Array.from({ length: quantidade }).map((_, i) => (
-        <div key={i} className="overflow-hidden rounded-2xl border border-linha bg-cartao">
+        <div key={i} className="overflow-hidden rounded-lg border border-linha bg-cartao">
           <div className="aspect-square animate-pulse bg-papel-2" />
           <div className="space-y-2 p-4">
             <div className="h-3 w-1/3 animate-pulse rounded bg-papel-2" />

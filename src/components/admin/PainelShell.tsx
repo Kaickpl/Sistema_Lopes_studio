@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState, type ReactNode } from "react";
 import { supabaseNavegador } from "@/lib/supabase/client";
-import { IconeCubo } from "../Icones";
+import { MarcaLS } from "../Logo";
 
 const LINKS = [
   { href: "/admin", rotulo: "Produtos" },
@@ -53,11 +53,9 @@ export function PainelShell({ children }: { children: ReactNode }) {
     <>
       <header className="sticky top-0 z-30 border-b border-linha bg-cartao/90 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
-          <Link href="/admin" className="flex items-center gap-2">
-            <span className="grid size-8 place-items-center rounded-lg bg-tinta text-papel">
-              <IconeCubo className="size-4" />
-            </span>
-            <span className="font-display font-bold">Painel</span>
+          <Link href="/admin" className="flex items-center gap-2.5">
+            <MarcaLS className="h-8 w-auto" />
+            <span className="font-display font-black uppercase tracking-tight">Painel</span>
           </Link>
           <div className="flex items-center gap-2 text-sm">
             <Link href="/" target="_blank" className="rounded-lg px-3 py-2 font-medium text-tinta-suave hover:text-tinta">

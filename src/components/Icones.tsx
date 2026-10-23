@@ -43,7 +43,24 @@ export function IconeVoltar({ className = "size-4" }: P) {
   );
 }
 
-/** Cubo isométrico — usado como logo e como imagem "sem foto" */
+export function IconePausar({ className = "size-4" }: P) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+      <rect x="6" y="5" width="4" height="14" rx="1" />
+      <rect x="14" y="5" width="4" height="14" rx="1" />
+    </svg>
+  );
+}
+
+export function IconeTocar({ className = "size-4" }: P) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+      <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" />
+    </svg>
+  );
+}
+
+/** Cubo isométrico — usado como imagem "sem foto" */
 export function IconeCubo({ className = "size-6" }: P) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" className={className} aria-hidden>

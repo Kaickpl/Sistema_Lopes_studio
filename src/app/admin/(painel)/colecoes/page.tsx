@@ -80,7 +80,7 @@ export default function Colecoes() {
       <Titulo
         acao={
           !rascunho && (
-            <button onClick={() => setRascunho(NOVA)} className={estilos.botaoLaranja}>
+            <button onClick={() => setRascunho(NOVA)} className={estilos.botaoVermelho}>
               + Nova coleção
             </button>
           )
@@ -142,7 +142,7 @@ export default function Colecoes() {
             <button type="button" onClick={() => setRascunho(null)} className={estilos.botaoSecundario}>
               Cancelar
             </button>
-            <button disabled={salvando} className={estilos.botaoLaranja}>
+            <button disabled={salvando} className={estilos.botaoVermelho}>
               {salvando ? "Salvando..." : "Salvar coleção"}
             </button>
           </div>
@@ -167,7 +167,7 @@ export default function Colecoes() {
                   {c.capa_url ? (
                     <Image src={c.capa_url} alt="" fill sizes="400px" className="object-cover opacity-80" />
                   ) : (
-                    <div className="camadas-laranja absolute inset-0" />
+                    <div className="camadas-vermelho absolute inset-0" />
                   )}
                   <span
                     className={`absolute right-3 top-3 rounded-full px-2.5 py-1 text-xs font-semibold ${

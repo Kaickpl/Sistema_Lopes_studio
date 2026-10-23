@@ -18,7 +18,7 @@ export async function listarCategorias(): Promise<Categoria[]> {
     .select("id, nome, slug, ordem")
     .order("ordem")
     .order("nome");
-  if (error) throw error;
+  if (error) throw new Error(`Supabase: ${error.message}`);
   return data ?? [];
 }
 
@@ -30,7 +30,7 @@ export async function listarColecoesAtivas(): Promise<Colecao[]> {
     .eq("ativa", true)
     .order("ordem")
     .order("criado_em", { ascending: false });
-  if (error) throw error;
+  if (error) throw new Error(`Supabase: ${error.message}`);
   return data ?? [];
 }
 
@@ -42,7 +42,7 @@ export async function buscarColecao(slug: string): Promise<Colecao | null> {
     .eq("slug", slug)
     .eq("ativa", true)
     .maybeSingle();
-  if (error) throw error;
+  if (error) throw new Error(`Supabase: ${error.message}`);
   return data;
 }
 
@@ -88,7 +88,21 @@ export async function listarProdutos(filtros: {
   else query = query.order("destaque", { ascending: false }).order("criado_em", { ascending: false });
 
   const { data, error } = await query;
-  if (error) throw error;
+  if (error) throw new Error(`Supabase: ${error.message}`);
+  return (data ?? []) as unknown as Produto[];
+}
+
+/** Produtos marcados como "Destaque" no painel (para o carrossel do topo) */
+export async function listarDestaques(limite = 8): Promise<Produto[]> {
+  await connection();
+  const { data, error } = await supabasePublico()
+    .from("produtos")
+    .select(CAMPOS_PRODUTO)
+    .eq("destaque", true)
+    .order("disponivel", { ascending: false })
+    .order("criado_em", { ascending: false })
+    .limit(limite);
+  if (error) throw new Error(`Supabase: ${error.message}`);
   return (data ?? []) as unknown as Produto[];
 }
 
@@ -100,7 +114,7 @@ export async function buscarProduto(slug: string) {
     .select(CAMPOS_PRODUTO)
     .eq("slug", slug)
     .maybeSingle();
-  if (error) throw error;
+  if (error) throw new Error(`Supabase: ${error.message}`);
   if (!data) return null;
   const produto = data as unknown as Produto;
 

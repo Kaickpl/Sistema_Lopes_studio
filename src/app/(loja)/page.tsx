@@ -4,7 +4,8 @@ import { Suspense } from "react";
 import { GradeCarregando, GradeProdutos } from "@/components/CartaoProduto";
 import { Filtros } from "@/components/Filtros";
 import { IconeSeta, IconeWhatsApp } from "@/components/Icones";
-import { listarCategorias, listarColecoesAtivas, listarProdutos, type Ordem } from "@/lib/data";
+import { CarrosselDestaques } from "@/components/CarrosselDestaques";
+import { listarCategorias, listarColecoesAtivas, listarDestaques, listarProdutos, type Ordem } from "@/lib/data";
 import { linkWhatsApp } from "@/lib/utils";
 
 export default function PaginaInicial({ searchParams }: PageProps<"/">) {
@@ -36,7 +37,7 @@ function Destaque() {
   return (
     <section className="relative overflow-hidden border-b border-linha">
       <div className="camadas absolute inset-0 opacity-60" aria-hidden />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:py-20 md:grid-cols-[1.3fr_1fr]">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 grid-cols-[minmax(0,1fr)] sm:py-20 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-linha bg-cartao px-3 py-1 text-xs font-semibold text-tinta-suave">
             <span className="size-2 rounded-full bg-filamento" /> Impressão 3D feita à mão
@@ -67,18 +68,48 @@ function Destaque() {
           </div>
         </div>
 
-        {/* Ilustração: peça sendo impressa camada por camada */}
-        <div className="relative mx-auto hidden aspect-square w-full max-w-sm md:block" aria-hidden>
-          <div className="absolute left-1/2 top-[6%] h-[14%] w-[16%] -translate-x-1/2 rounded-b-2xl rounded-t-md bg-tinta" />
-          <div className="absolute left-1/2 top-[20%] h-[5%] w-[3%] -translate-x-1/2 bg-tinta" />
-          <div
-            className="camadas-laranja absolute bottom-[10%] left-1/2 h-[58%] w-[62%] -translate-x-1/2"
-            style={{ clipPath: "polygon(22% 0, 78% 0, 70% 18%, 92% 55%, 84% 100%, 16% 100%, 8% 55%, 30% 18%)" }}
-          />
-          <div className="absolute bottom-[7%] left-1/2 h-[3%] w-[86%] -translate-x-1/2 rounded-full bg-tinta/15" />
-        </div>
+        {/* Carrossel com os produtos em destaque (ou o desenho, se não houver nenhum) */}
+        <Suspense fallback={<CarrosselCarregando />}>
+          <DestaquesTopo />
+        </Suspense>
       </div>
     </section>
+  );
+}
+
+async function DestaquesTopo() {
+  const destaques = await listarDestaques();
+  if (destaques.length === 0) return <IlustracaoImpressora />;
+  return <CarrosselDestaques produtos={destaques} />;
+}
+
+function CarrosselCarregando() {
+  return (
+    <div className="mx-auto w-full max-w-md">
+      <div className="mb-3 h-4 w-24 animate-pulse rounded bg-papel-2" />
+      <div className="overflow-hidden rounded-3xl border border-linha bg-cartao">
+        <div className="aspect-[4/3] animate-pulse bg-papel-2" />
+        <div className="space-y-2 p-5">
+          <div className="h-5 w-2/3 animate-pulse rounded bg-papel-2" />
+          <div className="h-5 w-1/4 animate-pulse rounded bg-papel-2" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Desenho de peça sendo impressa — aparece enquanto não há produtos em destaque */
+function IlustracaoImpressora() {
+  return (
+    <div className="relative mx-auto hidden aspect-square w-full max-w-sm md:block" aria-hidden>
+      <div className="absolute left-1/2 top-[6%] h-[14%] w-[16%] -translate-x-1/2 rounded-b-2xl rounded-t-md bg-tinta" />
+      <div className="absolute left-1/2 top-[20%] h-[5%] w-[3%] -translate-x-1/2 bg-tinta" />
+      <div
+        className="camadas-laranja absolute bottom-[10%] left-1/2 h-[58%] w-[62%] -translate-x-1/2"
+        style={{ clipPath: "polygon(22% 0, 78% 0, 70% 18%, 92% 55%, 84% 100%, 16% 100%, 8% 55%, 30% 18%)" }}
+      />
+      <div className="absolute bottom-[7%] left-1/2 h-[3%] w-[86%] -translate-x-1/2 rounded-full bg-tinta/15" />
+    </div>
   );
 }
 

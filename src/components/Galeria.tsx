@@ -9,7 +9,7 @@ export function Galeria({ fotos, nome }: { fotos: string[]; nome: string }) {
 
   if (fotos.length === 0) {
     return (
-      <div className="camadas grid aspect-square place-items-center rounded-3xl border border-linha bg-papel-2 text-tinta-suave/50">
+      <div className="camadas grid aspect-square place-items-center rounded-lg border border-linha bg-papel-2 text-tinta-suave/50">
         <IconeCubo className="size-20" />
       </div>
     );
@@ -20,7 +20,7 @@ export function Galeria({ fotos, nome }: { fotos: string[]; nome: string }) {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="relative aspect-square overflow-hidden rounded-3xl border border-linha bg-papel-2">
+      <div className="relative aspect-square overflow-hidden rounded-lg border border-linha bg-papel-2">
         <Image
           key={fotos[atual]}
           src={fotos[atual]}
@@ -36,7 +36,7 @@ export function Galeria({ fotos, nome }: { fotos: string[]; nome: string }) {
               type="button"
               onClick={anterior}
               aria-label="Foto anterior"
-              className="absolute left-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-cartao/90 text-xl shadow hover:bg-cartao"
+              className="absolute left-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-md bg-cartao/90 text-xl shadow hover:bg-tinta hover:text-papel"
             >
               ‹
             </button>
@@ -44,11 +44,11 @@ export function Galeria({ fotos, nome }: { fotos: string[]; nome: string }) {
               type="button"
               onClick={proxima}
               aria-label="Próxima foto"
-              className="absolute right-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-cartao/90 text-xl shadow hover:bg-cartao"
+              className="absolute right-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-md bg-cartao/90 text-xl shadow hover:bg-tinta hover:text-papel"
             >
               ›
             </button>
-            <span className="absolute bottom-3 right-3 rounded-full bg-tinta/80 px-2.5 py-1 text-xs font-medium text-papel">
+            <span className="absolute bottom-3 right-3 rounded-sm bg-tinta/85 px-2 py-1 text-xs font-bold text-papel">
               {atual + 1} / {fotos.length}
             </span>
           </>
@@ -63,7 +63,7 @@ export function Galeria({ fotos, nome }: { fotos: string[]; nome: string }) {
               type="button"
               onClick={() => setAtual(i)}
               aria-label={`Ver foto ${i + 1}`}
-              className={`relative size-20 shrink-0 overflow-hidden rounded-xl border-2 transition ${
+              className={`relative size-20 shrink-0 overflow-hidden rounded-md border-2 transition ${
                 i === atual ? "border-filamento" : "border-transparent opacity-70 hover:opacity-100"
               }`}
             >

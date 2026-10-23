@@ -7,7 +7,7 @@ export const estilos = {
     "w-full rounded-xl border border-linha bg-white px-3.5 py-2.5 text-sm outline-none transition placeholder:text-tinta-suave/60 focus:border-filamento focus:ring-2 focus:ring-filamento/15",
   botao:
     "inline-flex items-center justify-center gap-2 rounded-xl bg-tinta px-4 py-2.5 text-sm font-semibold text-papel transition hover:bg-tinta/85 disabled:cursor-not-allowed disabled:opacity-50",
-  botaoLaranja:
+  botaoVermelho:
     "inline-flex items-center justify-center gap-2 rounded-xl bg-filamento px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-filamento-escuro disabled:cursor-not-allowed disabled:opacity-50",
   botaoSecundario:
     "inline-flex items-center justify-center gap-2 rounded-xl border border-linha bg-white px-4 py-2.5 text-sm font-semibold text-tinta transition hover:border-tinta/40 disabled:opacity-50",

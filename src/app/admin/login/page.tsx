@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Aviso, Campo, estilos } from "@/components/admin/ui";
-import { IconeCubo } from "@/components/Icones";
+import { MarcaLS } from "@/components/Logo";
 import { supabaseNavegador } from "@/lib/supabase/client";
 
 export default function Login() {
@@ -36,10 +36,8 @@ export default function Login() {
   return (
     <div className="flex min-h-dvh items-center justify-center px-4">
       <form onSubmit={entrar} className={`${estilos.cartao} w-full max-w-sm p-6 sm:p-8`}>
-        <span className="grid size-11 place-items-center rounded-xl bg-tinta text-papel">
-          <IconeCubo className="size-6" />
-        </span>
-        <h1 className="mt-5 font-display text-2xl font-bold">Painel da loja</h1>
+        <MarcaLS className="h-12 w-auto" />
+        <h1 className="mt-6 font-display text-2xl font-black uppercase tracking-tight">Painel da loja</h1>
         <p className="mt-1 text-sm text-tinta-suave">Entre para gerenciar o catálogo.</p>
 
         <div className="mt-6 flex flex-col gap-4">

@@ -241,7 +241,7 @@ export function FormProduto({ id }: { id?: string }) {
           ligado={form.destaque}
           aoMudar={(v) => set("destaque", v)}
           rotulo="Destaque"
-          descricao="Aparece primeiro no catálogo, com selo de destaque."
+          descricao="Entra no carrossel do topo da página e aparece primeiro no catálogo."
         />
       </section>
 
