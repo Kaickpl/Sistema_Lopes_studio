@@ -290,7 +290,7 @@ export function FormProduto({ id }: { id?: string }) {
           <Link href="/admin" className={estilos.botaoSecundario}>
             Cancelar
           </Link>
-          <button type="submit" disabled={salvando} className={estilos.botaoLaranja}>
+          <button type="submit" disabled={salvando} className={estilos.botaoVermelho}>
             {salvando ? "Salvando..." : editando ? "Salvar alterações" : "Cadastrar produto"}
           </button>
         </div>
